@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN" "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+<taglib>
+	<tlib-version>1.0</tlib-version>
+	<jsp-version>2.0</jsp-version>
+	<short-name>Tag de pagination</short-name>
+	<tag>
+		<name>pagination</name>
+		<tag-class>betaboutique.taglib.pagination.Pager</tag-class>
+		<body-content>JSP</body-content>
+		<description>Permet de définir les attributs générant la pagination</description>
+		<attribute>
+			<name>servlet</name>
+			<required>true</required>
+			<description>Nom de la servlet sur laquelle sera renvoyé les instructions de pagination</description>
+		</attribute>
+		<attribute>
+			<name>totalElement</name>
+			<required>true</required>
+			<description>Nombre total d'éléments correspondant aux critères (non aux éléments paginés)</description>
+		</attribute>
+		<attribute>
+			<name>pageActuel</name>
+			<required>true</required>
+			<description>Page actuelle</description>
+		</attribute>
+		<attribute>
+			<name>maxParPage</name>
+			<required>false</required>
+			<description>Nombre d'éléments à afficher par page</description>
+		</attribute>
+		<attribute>
+			<name>champTri</name>
+			<required>false</required>
+			<description>Champ de la base de données sur lequel est effectué le tri</description>
+		</attribute>
+		<attribute>
+			<name>typeTri</name>
+			<required>false</required>
+			<description>Type de tri effectué : ASC | DESC</description>
+		</attribute>
+	</tag>
+	
+	<tag>
+		<name>paramServlet</name>
+		<tag-class>betaboutique.taglib.pagination.ParametreServlet</tag-class>
+		<body-content>JSP</body-content>
+		<description>Paramètres envoyés à la servlet (méthode GET)</description>
+		<attribute>
+			<name>nom</name>
+			<required>true</required>
+			<description>Nom du paramètre</description>
+		</attribute>
+		<attribute>
+			<name>valeur</name>
+			<required>true</required>
+			<description>Valeur du paramètre</description>
+		</attribute>
+	</tag>
+	
+	
+	<tag>
+		<name>pagePrecedente</name>
+		<tag-class>betaboutique.taglib.pagination.PagePrecedente</tag-class>
+		<body-content>JSP</body-content>
+		<description>Retourne la page précédente suivant le format demandé</description>
+		<attribute>
+			<name>format</name>
+			<required>false</required>
+			<description>Type de format de retour : lien (lien href) | image (lien sous forme d'image) | valeur</description>
+		</attribute>
+		<attribute>
+			<name>cheminImage</name>
+			<required>false</required>
+			<description>Si le format est image, vous permet de définir la source de celle-ci</description>
+		</attribute>
+	</tag>
+	
+	<tag>
+		<name>pageActuel</name>
+		<tag-class>betaboutique.taglib.pagination.PageActuel</tag-class>
+		<body-content>JSP</body-content>
+		<description>Renvoi la valeur pour la page actuel</description>
+	</tag>
+	
+	<tag>
+		<name>pageSuivante</name>
+		<tag-class>betaboutique.taglib.pagination.PageSuivante</tag-class>
+		<body-content>JSP</body-content>
+		<description>Retourne la prochaine page suivant le format demandé</description>
+		<attribute>
+			<name>format</name>
+			<required>false</required>
+			<description>Type de format de retour : lien (lien href) | image (lien sous forme d'image) | valeur</description>
+		</attribute><attribute>
+			<name>cheminImage</name>
+			<required>false</required>
+			<description>Si le format est image, vous permet de définir la source de celle-ci</description>
+		</attribute>
+	</tag>
+	
+	<tag>
+		<name>premierePage</name>
+		<tag-class>betaboutique.taglib.pagination.PremierePage</tag-class>
+		<body-content>JSP</body-content>
+		<description>Retourne la première page suivant le format demandé</description>
+		<attribute>
+			<name>format</name>
+			<required>false</required>
+			<description>Type de format de retour : lien (lien href) | image (lien sous forme d'image) | valeur</description>
+		</attribute><attribute>
+			<name>cheminImage</name>
+			<required>false</required>
+			<description>Si le format est image, vous permet de définir la source de celle-ci</description>
+		</attribute>
+	</tag>
+	
+	<tag>
+		<name>dernierePage</name>
+		<tag-class>betaboutique.taglib.pagination.DernierePage</tag-class>
+		<body-content>JSP</body-content>
+		<description>Retourne la dernière page suivant le format demandé</description>
+		<attribute>
+			<name>format</name>
+			<required>false</required>
+			<description>Type de format de retour : lien (lien href) | image (lien sous forme d'image) | valeur</description>
+		</attribute><attribute>
+			<name>cheminImage</name>
+			<required>false</required>
+			<description>Si le format est image, vous permet de définir la source de celle-ci</description>
+		</attribute>
+	</tag>
+	
+	<tag>
+		<name>premierElement</name>
+		<tag-class>betaboutique.taglib.pagination.PremierElement</tag-class>
+		<body-content>JSP</body-content>
+		<description>Retourne l'index du premier élement paginé</description>
+	</tag>
+	
+	<tag>
+		<name>dernierElement</name>
+		<tag-class>betaboutique.taglib.pagination.DernierElement</tag-class>
+		<body-content>JSP</body-content>
+		<description>Retourne l'index du dernier élement paginé</description>
+	</tag>
+	
+	<tag>
+		<name>totalElement</name>
+		<tag-class>betaboutique.taglib.pagination.TotalElement</tag-class>
+		<body-content>JSP</body-content>
+		<description>Retourne le nombre total d'élément dans la source de données correspondant aux critères</description>
+	</tag>
+	
+	<tag>
+		<name>maxParPage</name>
+		<tag-class>betaboutique.taglib.pagination.MaxParPage</tag-class>
+		<body-content>JSP</body-content>
+		<description>Permet de définir le maximum d'éléments à afficher par page</description>
+		<attribute>
+			<name>valeur</name>
+			<required>true</required>
+			<description>Nouvelle valeur</description>
+		</attribute>
+		<attribute>
+			<name>format</name>
+			<required>false</required>
+			<description>Format de retour : lien (lien href) | url </description>
+		</attribute>
+	</tag>
+	
+	<tag>
+		<name>tri</name>
+		<tag-class>betaboutique.taglib.pagination.Tri</tag-class>
+		<body-content>JSP</body-content>
+		<description>Permet de réaliser un tri sur un des champs de la source de données</description>
+		<attribute>
+			<name>champ</name>
+			<required>true</required>
+			<description>Nom du champ</description>
+		</attribute>
+		<attribute>
+			<name>format</name>
+			<required>false</required>
+			<description>Type de format de retour : lien (lien href) | url | image (lien href sous forme d'image)</description>
+		</attribute>
+		<attribute>
+			<name>imageCroissant</name>
+			<required>false</required>
+			<description>Source de l'image pour un tri croissant</description>
+		</attribute>
+		<attribute>
+			<name>imageDecroissant</name>
+			<required>false</required>
+			<description>Source de l'image pour un tri décroissant</description>
+		</attribute>
+	</tag>
+
+</taglib>

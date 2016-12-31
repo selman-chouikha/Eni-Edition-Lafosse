@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app
+	xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+    version="3.0">
+
+
+	<!-- Page d'accueil -->
+	<welcome-file-list>
+		<welcome-file>vues/utilisateurs/index.html</welcome-file>
+	</welcome-file-list>
+	
+	<!-- Chargeur du datasource -->
+	<listener>
+		<listener-class>betaboutique.outils.InitialisationBaseDeDonnees</listener-class>
+	</listener>
+	
+	<!-- Paramètre globaux http://localhost:8080/betaboutiquejavaee/ - http://betaboutiquejavaee.gdawj.com/ -->
+	<context-param>
+		<param-name>urlApplication</param-name>
+		<param-value>http://betaboutiquejavaee.gdawj.com/</param-value>
+	</context-param>
+	<context-param>
+		<param-name>uploadTailleMax</param-name>
+		<param-value>5242880</param-value>
+	</context-param>
+	<context-param>
+		<param-name>photoParDefaut</param-name>
+		<param-value>grandedefaut.png</param-value>
+	</context-param>
+	<context-param>
+		<param-name>vignetteParDefaut</param-name>
+		<param-value>defaut.png</param-value>
+	</context-param>
+	<context-param>
+		<param-name>dossierImage</param-name>
+		<param-value>/usr/local/tomcat/webapps/betaboutiquejavaee/</param-value>
+	</context-param>
+	<context-param>
+		<param-name>serviceClient</param-name>
+		<param-value>service-client@xxxxxx.com</param-value>
+	</context-param>
+	<context-param>
+		<param-name>mailContact</param-name>
+		<param-value>contact@xxxxxx.com</param-value>
+	</context-param>
+	<context-param>
+		<param-name>adresseContact</param-name>
+		<param-value>4 rue du haut</param-value>
+	</context-param>
+	<context-param>
+		<param-name>villeContact</param-name>
+		<param-value>25000 BESANCON</param-value>
+	</context-param>
+	<context-param>
+		<param-name>telephoneContact</param-name>
+		<param-value>+33 X XX XX XX XX</param-value>
+	</context-param>
+	
+	
+	<!-- Servlets Utilisateur et Administrateurs -->
+	<servlet>
+		<servlet-name>servletPageFixe</servlet-name>
+		<servlet-class>betaboutique.servlets.ServletPageFixe</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>servletGestionSession</servlet-name>
+		<servlet-class>betaboutique.servlets.ServletGestionSession</servlet-class>
+	</servlet>
+	
+	
+	<!-- Servlets Administrateurs -->
+	<servlet>
+		<servlet-name>servletAdministrationAdministrateurs</servlet-name>
+		<servlet-class>betaboutique.servlets.administrateur.ServletGestionAdministrateurs</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>servletAdministrationClients</servlet-name>
+		<servlet-class>betaboutique.servlets.administrateur.ServletGestionClients</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>servletAdministrationArticles</servlet-name>
+		<servlet-class>betaboutique.servlets.administrateur.ServletGestionArticles</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>servletAdministrationCommandes</servlet-name>
+		<servlet-class>betaboutique.servlets.administrateur.ServletGestionCommandes</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>servletAdministrationCategories</servlet-name>
+		<servlet-class>betaboutique.servlets.administrateur.ServletGestionCategories</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>servletAutoCompleteAdministration</servlet-name>
+		<servlet-class>betaboutique.servlets.administrateur.ServletAutoComplete</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>servletUpload</servlet-name>
+		<servlet-class>betaboutique.servlets.administrateur.ServletUpload</servlet-class>
+	</servlet>
+
+
+
+	<!-- Servlets Utilisateur -->
+	<servlet>
+		<servlet-name>servletAutoComplete</servlet-name>
+		<servlet-class>betaboutique.servlets.client.ServletAutoComplete</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>servletGestionRaccourci</servlet-name>
+		<servlet-class>betaboutique.servlets.client.ServletGestionRaccourci</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>servletGestionClient</servlet-name>
+		<servlet-class>betaboutique.servlets.client.ServletGestionClient</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>servletGestionArticles</servlet-name>
+		<servlet-class>betaboutique.servlets.client.ServletGestionArticles</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>servletGestionNotes</servlet-name>
+		<servlet-class>betaboutique.servlets.client.ServletGestionNotes</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>servletGestionPanier</servlet-name>
+		<servlet-class>betaboutique.servlets.client.ServletGestionPanier</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>servletGestionCommandes</servlet-name>
+		<servlet-class>betaboutique.servlets.client.ServletGestionCommandes</servlet-class>
+	</servlet>
+	
+
+	<!-- Mapping des servlets -->
+	<servlet-mapping>
+		<servlet-name>servletPageFixe</servlet-name>
+		<url-pattern>/pageFixe</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>servletGestionSession</servlet-name>
+		<url-pattern>/gestionSession</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>servletGestionClient</servlet-name>
+		<url-pattern>/gestionClient</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>servletGestionRaccourci</servlet-name>
+		<url-pattern>/gestionRaccourci</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>servletGestionArticles</servlet-name>
+		<url-pattern>/gestionArticles</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>servletGestionNotes</servlet-name>
+		<url-pattern>/gestionNotes</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>servletGestionPanier</servlet-name>
+		<url-pattern>/gestionPanier</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>servletGestionCommandes</servlet-name>
+		<url-pattern>/gestionCommandes</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>servletAutoComplete</servlet-name>
+		<url-pattern>/autoComplete</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>servletAdministrationAdministrateurs</servlet-name>
+		<url-pattern>/administrationAdministrateurs</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>servletAdministrationClients</servlet-name>
+		<url-pattern>/administrationClients</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>servletAutoCompleteAdministration</servlet-name>
+		<url-pattern>/administrationAutoComplete</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>servletAdministrationArticles</servlet-name>
+		<url-pattern>/administrationArticles</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>servletAdministrationCommandes</servlet-name>
+		<url-pattern>/administrationCommandes</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>servletAdministrationCategories</servlet-name>
+		<url-pattern>/administrationCategories</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>servletUpload</servlet-name>
+		<url-pattern>/upload</url-pattern>
+	</servlet-mapping>
+
+
+	<!-- TagLib -->
+	<jsp-config>
+	<taglib>
+		<taglib-uri>http://java.sun.com/jstl/betaboutique</taglib-uri>
+		<taglib-location>/WEB-INF/tld/betaboutique.tld</taglib-location>
+	</taglib>
+	<taglib>
+		<taglib-uri>/WEB-INF/tld/pagination.tld</taglib-uri>
+		<taglib-location>/WEB-INF/tld/pagination.tld</taglib-location>
+	</taglib>
+	<taglib>
+		<taglib-uri>http://java.sun.com/jstl/core</taglib-uri>
+		<taglib-location>/WEB-INF/tld/c.tld</taglib-location>
+	</taglib>
+	<taglib>
+		<taglib-uri>/WEB-INF/tld/x.tld</taglib-uri>
+		<taglib-location>/WEB-INF/tld/x.tld</taglib-location>
+	</taglib>
+	<taglib>
+		<taglib-uri>/WEB-INF/tld/sql.tld</taglib-uri>
+		<taglib-location>/WEB-INF/tld/sql.tld</taglib-location>
+	</taglib>
+	<taglib>
+		<taglib-uri>/WEB-INF/tld/mailer.tld</taglib-uri>
+		<taglib-location>/WEB-INF/tld/mailer.tld</taglib-location>
+	</taglib>
+	</jsp-config>
+	
+	<!-- Informations de connexion à la base de données -->
+	<resource-ref>
+		<description>Connexion à la base de données MySQL</description>
+		<res-ref-name>jdbc_betaboutiquejavaee_MySQL</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+	</resource-ref>
+	
+</web-app>

@@ -1,0 +1,114 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+	<!-- Formulaire d'ajout de raccourcis -->
+	<c:if test="${compte.class=='class betaboutique.beans.Client'}">
+	
+		<!-- Plugin les raccourci utilisateur -->
+		<script type="text/javascript" src="<b:config attribut="urlApplication"/>javascript/raccourci.js"></script>
+		
+		<!-- Raccourci utilisateur -->
+		<div id="conteneurraccourci">
+			<table id="formulaireraccourci" class="raccourci">
+				<tbody>
+					<tr>
+						<td>
+							<b>Ajouter un favori : </b>
+						</td>
+						<td align="right">
+							<img src="<b:config attribut="urlApplication"/>images/application/trash.png" onclick="fermerRaccourci();" style="cursor:pointer;" />
+						</td>
+					</tr>
+					<tr height="30px">
+						<td>
+							<b>Nom :</b> &nbsp;<input type="text" id="nomraccourci" name="nomraccourci" class="inputpetit" maxlength="25"/>
+						</td>
+						<td>
+							<img src="<b:config attribut="urlApplication"/>images/application/ok.gif" style="cursor:pointer;" onclick="ajouterRaccourci();" title="Ajouter ce favoris"/>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" id="messageraccourci">
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<br/>
+			
+			<table id="listeraccourci" class="raccourci">
+			</table>
+		</div>
+				
+	</c:if>
+
+
+	<table border="0" cellspacing="0" cellpadding="0" name="menugauche" id="menugauche" style="background: url('<b:config attribut="urlApplication"/>images/application/fondmenu.gif') repeat-x;" height="500">
+		
+		<!-- Affichage du menu utilisateur -->
+		<c:if test="${compte.class=='class betaboutique.beans.Client'}">
+			<tr>
+				<td width="100%" valign="top" height="80px">
+					<ul class="menucategorie">
+						<li>
+							<a href="<b:config attribut="urlApplication"/>gestionClient?action=consulter">
+								<img src="<b:config attribut="urlApplication"/>images/application/fleche.gif" border="0" align="absmiddle"/>
+								Mon compte
+							</a>
+						</li>
+						<li>
+							<div class="lien" onclick="afficherRaccourci();">
+								<img src="<b:config attribut="urlApplication"/>images/application/fleche.gif" border="0" align="absmiddle"/>
+								Mes favoris
+							</div>
+						</li>
+						<li>
+							<a href="<b:config attribut="urlApplication"/>gestionCommandes?action=lister">
+								<img src="<b:config attribut="urlApplication"/>images/application/fleche.gif" border="0" align="absmiddle"/>
+								Mes commandes
+							</a>
+						</li>
+					</ul>
+				</td>
+			</tr>
+		</c:if>
+		<tr>
+			<td width="100%" valign="top">
+				<ul class="menucategorie">
+					<sql:setDataSource dataSource="jdbc_betaboutiquejavaee_MySQL"/>
+					<!-- On sélectionne toutes les catégories qui ont au moins un article -->
+					<sql:query sql="SELECT * FROM categorie WHERE id_categorie IN (SELECT id_categorie FROM article WHERE etatarticle = 1 GROUP BY (id_categorie)) ORDER BY nomcategorie ASC" var="categories"/>
+					<c:forEach var="categorie" begin="0" items="${categories.rows}">
+						<li>
+							<a href="<b:config attribut="urlApplication"/>gestionArticles?action=lister&idCategorie=<c:out value="${categorie.id_categorie}"/>">
+								<img src="<b:config attribut="urlApplication"/>images/application/fleche.gif" border="0" align="absmiddle"/>
+								<c:out value="${categorie.nomcategorie}"/>
+							</a>
+						</li>
+					</c:forEach>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td width="100%" valign="top" height="40px">
+				<form id="formulairerecherche" name="formulairerecherche" action="gestionArticles" method="post">
+					<input type="text" id="recherche" name="recherche" value="<c:out value="${recherche}" />" onfocus="chargerAutoCompleteUser();"/>
+					<input type="image" src="<b:config attribut="urlApplication"/>images/application/ok.gif" title="Lancer la recherche" align="absmiddle"/>
+				</form>
+			</td>
+		</tr>
+		<tr>
+			<td valign="top" align="center" bgcolor="#ffce00" height="50" class="textepanier">
+				<div id="panier" class="drop">
+					<a href="#" id="aidedynamique" name="Votre panier" onclick="javascript:window.location='gestionPanier?action=lister';">
+						<img src="<b:config attribut="urlApplication"/>images/application/panier.gif" border="0" style="padding-top:10px;"/> 
+						Panier
+					</a>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td align="center">
+				<img src="<b:config attribut="urlApplication"/>images/application/cartes.gif" border="0" style="marginbottom:5px;"/>
+			</td>
+		</tr>
+	</table>

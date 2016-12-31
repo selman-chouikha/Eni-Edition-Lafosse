@@ -1,0 +1,15 @@
+<Context path="/betaboutiquejavaee" reloadable="true" docBase="xxxx" workDir="xxxx">
+
+	<Resource name="jdbc_betaboutiquejavaee_MySQL" 
+                  auth="Container" 
+                  type="javax.sql.DataSource"
+                  username="xxxx" 
+                  password="xxxx" driverClassName="com.mysql.jdbc.Driver"
+                  url="jdbc:mysql://localhost:3306/betaboutiquejavaee"
+                  maxActive="20" 
+                  maxIdle="10" 
+                  validationQuery="SELECT 1"
+	/>
+
+</Context>
+

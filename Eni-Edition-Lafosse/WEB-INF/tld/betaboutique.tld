@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN" "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+<taglib>
+	<tlib-version>1.0</tlib-version>
+	<jsp-version>2.0</jsp-version>
+	<short-name>Opérations sur les chaines de caractères</short-name>	
+	
+	<tag>
+		<name>resumer</name>
+		<tag-class>betaboutique.taglib.Resumer</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>longueur</name>
+			<required>true</required>
+		</attribute>
+		<attribute>
+			<name>texte</name>
+			<required>true</required>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>prix</name>
+		<tag-class>betaboutique.taglib.Prix</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>montant</name>
+			<required>true</required>
+		</attribute>
+	</tag>
+	
+	<tag>
+		<name>config</name>
+		<tag-class>betaboutique.taglib.Configuration</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>attribut</name>
+			<required>true</required>
+		</attribute>
+	</tag>
+	
+	<tag>
+		<name>reduction</name>
+		<tag-class>betaboutique.taglib.Reduction</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>prix</name>
+			<required>true</required>
+		</attribute>
+		<attribute>
+			<name>pourcentage</name>
+			<required>true</required>
+		</attribute>
+	</tag>
+	
+	<tag>
+		<name>unicode</name>
+		<tag-class>betaboutique.taglib.UnicodeToISO</tag-class>
+		<body-content>JSP</body-content>
+	</tag>
+	
+	<tag>
+		<name>formatDate</name>
+		<tag-class>betaboutique.taglib.FormatDate</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>date</name>
+			<required>true</required>
+		</attribute>
+		<attribute>
+			<name>format</name>
+			<required>true</required>
+		</attribute>
+	</tag>
+
+
+</taglib>

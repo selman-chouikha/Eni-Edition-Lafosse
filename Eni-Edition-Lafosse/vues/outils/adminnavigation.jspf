@@ -1,0 +1,33 @@
+<table border="0" cellspacing="0" cellpadding="0" name="menugauche" id="menugauche" style="background: url('<b:config attribut="urlApplication"/>images/application/fondmenu.gif') repeat-x;"  height="500">
+	<tr>
+		<td width="100%" valign="top"><br/><span style="margin-left:25px;"><b>ADMINISTRATION</b></span>
+			<ul class="menucategorie">
+				<li>
+       				<a href="administrationClients?action=lister">
+       					<img src="<b:config attribut="urlApplication"/>images/application/fleche.gif" border="0" align="absmiddle"/>&nbsp;Gestion des clients
+       				</a>
+       			</li>
+       			<li>
+       				<a href="administrationAdministrateurs?action=lister">
+       					<img src="<b:config attribut="urlApplication"/>images/application/fleche.gif" border="0" align="absmiddle"/>&nbsp;Gestion des admins
+       				</a>
+       			</li>
+		        <li>
+		        	<a href="administrationCategories?action=lister">
+		        		<img src="<b:config attribut="urlApplication"/>images/application/fleche.gif" border="0" align="absmiddle"/>&nbsp;Gestion des cat&eacute;gories
+		        	</a>
+		        </li>
+       			<li>
+       				<a href="administrationArticles?action=lister">
+       					<img src="<b:config attribut="urlApplication"/>images/application/fleche.gif" border="0" align="absmiddle"/>&nbsp;Gestion des articles
+       				</a>
+       			</li>
+       			<li>
+       				<a href="administrationCommandes?action=lister">
+       					<img src="<b:config attribut="urlApplication"/>images/application/fleche.gif" border="0" align="absmiddle"/>&nbsp;Gestion des commandes
+       				</a>
+       			</li>
+		   </ul>
+		</td>
+	</tr>
+</table>

@@ -1,0 +1,31 @@
+delimiter //
+CREATE TRIGGER annulercommande BEFORE UPDATE ON commande FOR EACH ROW 
+BEGIN
+
+    DECLARE id,quantite,stock,reference int;
+    DECLARE fini TINYINT DEFAULT 0;
+    DECLARE curseur CURSOR FOR SELECT id_article,quantitearticle FROM lignecommande WHERE id_commande = NEW.id_commande;
+    DECLARE CONTINUE HANDLER FOR SQLSTATE '02000' SET fini = 1;
+    
+    IF NEW.etatcommande = 2 THEN
+
+		OPEN curseur;
+			REPEAT 
+			   FETCH curseur into id,quantite;
+			   IF fini <> 1 THEN
+					SELECT referencearticle INTO reference FROM articlecommande WHERE id_articlecommande = id;
+					SELECT stockarticle INTO stock FROM article WHERE id_article = reference;
+					SET stock = stock + quantite;
+					UPDATE article set stockarticle = stock WHERE id_article = reference; 
+			   END IF;
+			UNTIL fini END REPEAT;
+	    CLOSE curseur;
+    
+    END IF; 
+
+
+END;//
+delimiter ;
+
+   
+    

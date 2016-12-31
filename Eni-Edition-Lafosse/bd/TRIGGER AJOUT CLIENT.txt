@@ -1,0 +1,20 @@
+delimiter //
+CREATE TRIGGER clientcommande BEFORE INSERT ON commande FOR EACH ROW 
+BEGIN
+
+	DECLARE id int;
+    
+    INSERT INTO clientcommande(referenceclient,identifiantclient,motdepasseclient,nomclient,prenomclient,emailclient,telephoneclient,adresseclient,villeclient,codepostalclient,paysclient)
+	SELECT id_client,identifiantclient,motdepasseclient,nomclient,prenomclient,emailclient,telephoneclient,adresseclient,villeclient,codepostalclient,paysclient
+    FROM client 
+    WHERE id_client = NEW.id_client;
+        
+    SET id = LAST_INSERT_ID();
+
+    SET NEW.id_client = id;
+
+END;//
+delimiter;
+
+   
+    

@@ -1,0 +1,22 @@
+					</td>
+				</tr>
+			</table>
+			<br/>
+			<br/>
+			<div id="menubas" >
+				<a href="<b:config attribut="urlApplication"/>pageFixe?action=index" title="Accueil">Accueil</a> |
+				<a href="<b:config attribut="urlApplication"/>gestionArticles?action=promo" title="Promotions">Promotions</a> |
+				<a href="<b:config attribut="urlApplication"/>gestionArticles?action=nouveaute" title="Nouveaut&eacute;s">Nouveaut&eacute;s</a> |
+				<a href="<b:config attribut="urlApplication"/>gestionArticles?action=lister&idCategorie=0" title="Catalogue">Catalogue</a> |
+				<a href="<b:config attribut="urlApplication"/>pageFixe?action=contact" title="Contact">Contact</a> |
+				<a href="<b:config attribut="urlApplication"/>pageFixe?action=cgv" title="CGV">Conditions de vente</a>
+			</div>
+			
+			<div id="betaboutique">
+				BetaBoutique est une boutique de et par la soci&eacute;t&eacute; BetaBoutique SARL au
+				Capital XX XXXX Euros num siret 111 222 333 444 555
+			</div>
+		</div>
+	</div>
+	</body>
+</html>

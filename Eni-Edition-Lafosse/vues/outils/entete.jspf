@@ -1,0 +1,179 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%@ taglib uri="/WEB-INF/tld/c.tld" prefix="c" %>
+<%@ taglib uri="/WEB-INF/tld/x.tld" prefix="x" %>
+<%@ taglib uri="/WEB-INF/tld/sql.tld" prefix="sql" %>
+<%@ taglib uri="/WEB-INF/tld/betaboutique.tld" prefix="b" %>
+<%@ taglib uri="/WEB-INF/tld/pagination.tld" prefix="p" %>
+
+<html>
+
+	<head>
+		
+		<title>BetaBoutique</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="description" content="BetaBoutique" />
+		<!--  favicon -->
+		<link rel="shortcut icon" href="<b:config attribut="urlApplication"/>images/application/favicon-betaB.ico.gif" />
+		
+		<!-- Feuilles de styles -->
+		<link rel="stylesheet" type="text/css" href="<b:config attribut="urlApplication"/>css/styles.css" />
+		<link rel="stylesheet" type="text/css" href="<b:config attribut="urlApplication"/>css/styles_panier.css" />
+		<link rel="stylesheet" type="text/css" href="<b:config attribut="urlApplication"/>css/jtip.css" />
+		<link rel="stylesheet" type="text/css" href="<b:config attribut="urlApplication"/>css/autocomplete.css"/>
+
+		<!-- Biliothèques Javascript -->
+		<script type="text/javascript" src="<b:config attribut="urlApplication"/>javascript/jquery/jquery.js"></script>
+		<script type="text/javascript" src="<b:config attribut="urlApplication"/>javascript/jtip/jtip.js"></script>
+		
+		<!-- Plugin pour les recherches -->
+		<script type="text/javascript" src="<b:config attribut="urlApplication"/>javascript/recherche.utilisateur.js"></script>
+		
+		<!-- Plugin javascript pour la gestion du panier -->
+		<script type="text/javascript" src="<b:config attribut="urlApplication"/>javascript/panier.js"></script>
+		
+		<!--  Pour l'autocompletion  -->
+		<script type="text/javascript" src="<b:config attribut="urlApplication"/>javascript/jquery/plugin/dimensions.js"></script>
+		<script type="text/javascript" src="<b:config attribut="urlApplication"/>javascript/jquery/plugin/jquery.bgiframe.min.js"></script>
+		<script type="text/javascript" src="<b:config attribut="urlApplication"/>javascript/jquery/plugin/jquery.autocomplete.js"></script>
+	
+		
+	</head>
+	
+	<body>
+		<div id="global">
+			<div id="entete">
+				<table border="0" cellspacing="0" cellpadding="0" width="100%" height="100%">
+					<tr>
+						<td align="left" valign="top"><a href="<b:config attribut="urlApplication"/>pageFixe?action=index"><img src="<b:config attribut="urlApplication"/>images/application/bandeau_haut_gauche.jpg" border="0"/></a></td>
+						<td align="left" valign="top"><img src="<b:config attribut="urlApplication"/>images/application/bandeau_haut_centre.jpg"/></td>
+						<td align="left" valign="top" background="<b:config attribut="urlApplication"/>images/application/bandeau_haut_droite.jpg" width="222">
+							
+							<!-- Formulaire de connexion -->
+							<c:if test="${compte == null}">
+								<table border="0" cellspacing="0" cellpadding="0" width="100%" height="100%">
+									<tr height="50px">
+										<td style="padding-left:10px;padding-top:10px">
+											<form action="<b:config attribut="urlApplication"/>gestionSession?action=validerauthentification" method="POST">
+												<table cellpadding="" cellspacing="5">
+													<tr>
+														<td>
+															<div class="titregris">IDENTIFIANT</div>
+															<input class="inputpetit" type="text" name="identifiant" id="identifiant" value="<c:out value="${identifiant}"/>"/>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<div class="titregris">MOT DE PASSE</div>
+															<input class="inputpetit" type="password" name="motDePasse" id="motDePasse" />
+															<input type="image" src="<b:config attribut="urlApplication"/>images/application/ok.gif" align="absmiddle" title="Se connecter"/>
+														</td>
+													</tr>
+												</table>
+											</form>
+										</td>
+									</tr>
+									<tr valign="top">
+										<td style="padding-left:10px" class="lien">
+											<a href="<b:config attribut="urlApplication"/>gestionClient" title="S'inscrire">
+												<img src="<b:config attribut="urlApplication"/>images/application/inscrire.gif"/>
+											</a>
+											&nbsp;&nbsp;
+											<a href="<b:config attribut="urlApplication"/>gestionPanier?action=lister" title="Panier">
+												<img src="<b:config attribut="urlApplication"/>images/application/monpanier.gif"/>
+											</a>
+										</td>
+									</tr>
+								</table>
+							</c:if>
+							
+							<!-- Information client -->
+							<c:if test="${compte != null}">
+								<table border="0" cellspacing="0" cellpadding="0" width="100%" height="100%">
+									<tr height="50px">
+										<td style="padding-left:10px;padding-top:20px">
+											<div class="titregris">
+												Bienvenue
+			 									<c:out value="${compte.nom}"/>
+			 									<c:out value="${compte.prenom}"/>
+		 									</div>
+		 								</td>
+		 							</tr>
+		 							<tr valign="top">
+										<td align="center">
+											<div class="titregris">
+												<a href="<b:config attribut="urlApplication"/>gestionSession?action=deconnexion" title="Se déconnecter">(se d&eacute;connecter)</a>
+											</div>
+										</td>
+									</tr>
+									<c:if test="${compte.class=='class betaboutique.beans.Client'}">
+			 							<tr valign="top">
+											<td class="lien" style="padding-left:10px;padding-top:20px">
+												<a href="<b:config attribut="urlApplication"/>gestionClient?action=consulter" title="Mon compte">
+													<img src="<b:config attribut="urlApplication"/>images/application/moncompte.gif"/>
+												</a>
+												&nbsp;&nbsp;
+												<a href="<b:config attribut="urlApplication"/>gestionPanier?action=lister" title="Panier">
+													<img src="<b:config attribut="urlApplication"/>images/application/monpanier.gif"/>	
+												</a>
+											</td>
+										</tr>
+									</c:if>
+		 						</table>
+							</c:if>
+							
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div id="contenu">
+				<table border="0" cellspacing="0" cellpadding="0" width="100%">
+					<tr>
+										
+						<!-- Menu de navigation -->
+						<td valign="top" width="200">
+							<%@ include file="navigation.jspf" %>
+						</td>
+						
+						<!-- Page -->
+						<td valign="top" width="100%" style="padding-left:8px;padding-right:8px">
+							<ul id="menuhaut">
+								<li><a href="<b:config attribut="urlApplication"/>pageFixe?action=index" title="Accueil">Accueil</a></li>
+								<li><a href="<b:config attribut="urlApplication"/>gestionArticles?action=promo" title="Promotions">Promotions</a></li>
+								<li><a href="<b:config attribut="urlApplication"/>gestionArticles?action=nouveaute" title="Nouveaut&eacute;s">Nouveaut&eacute;s</a></li>
+								<li><a href="<b:config attribut="urlApplication"/>pageFixe?action=cgv" title="CGV">Conditions de vente</a></li>
+								<li><a href="<b:config attribut="urlApplication"/>gestionPanier?action=lister" title="Panier">Commander</a></li>
+							</ul>
+						
+							<!-- Message d'erreur -->
+					        <div id="conteneur_erreur" <c:if test="${erreurs==null}">style="display:none;"</c:if> >
+					        	<br> 
+						     	<div id="message_erreur">
+									<label>
+										Les erreurs suivantes se sont produites : 
+									</label>
+									<ul>
+										<div id="erreurs">
+											<c:forEach items="${erreurs}" var="erreur">
+												<li><c:out value="${erreur}"/></li>		
+											</c:forEach>
+										</div>
+									</ul>
+								</div>
+								<br/>
+							</div>
+							
+							<!-- Message de succes -->
+							<div id="conteneur_succes" <c:if test="${succes==null}">style="display:none;"</c:if> >
+								<br> 
+						     	<div id="message_information">
+									<ul>
+										<c:forEach items="${succes}" var="info">
+											<li><c:out value="${info}"/></li>		
+										</c:forEach>
+									</ul>
+								</div>
+								<br/>
+							</div>
+							
+							<br/>	

@@ -1,0 +1,113 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+
+<%@ taglib uri="/WEB-INF/tld/c.tld" prefix="c" %>
+<%@ taglib uri="/WEB-INF/tld/x.tld" prefix="x" %>
+<%@ taglib uri="/WEB-INF/tld/sql.tld" prefix="sql" %>
+<%@ taglib uri="/WEB-INF/tld/betaboutique.tld" prefix="b" %>
+<%@ taglib uri="/WEB-INF/tld/pagination.tld" prefix="p" %>
+
+<html>
+	<head>
+	
+		<title>Administration - BetaBoutique</title>
+		<meta http-equiv="cache-control" content="no-cache"> 
+		<meta http-equiv="expires" content="0"> 
+		<meta http-equiv="pragma" content="no-cache"> 
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		<meta name="description" content="BetaBoutique">
+		<!--  favicon -->
+		<link rel="shortcut icon" href="<b:config attribut="urlApplication"/>images/application/favicon-betaB.ico.gif" />
+		
+		<!-- Feuilles de styles -->
+		<link rel="stylesheet" type="text/css" href="<b:config attribut="urlApplication"/>css/styles.css" />
+		<link rel="stylesheet" type="text/css" href="<b:config attribut="urlApplication"/>css/styles_mail.css" />
+		<link rel="stylesheet" type="text/css" href="<b:config attribut="urlApplication"/>css/styles_admin.css"/>
+		<link rel="stylesheet" type="text/css" href="<b:config attribut="urlApplication"/>css/styles_panier.css"/>
+		<link rel="stylesheet" type="text/css" href="<b:config attribut="urlApplication"/>css/autocomplete.css"/>
+
+		<!-- Biliothèques Javascript -->
+		<script type="text/javascript" src="<b:config attribut="urlApplication"/>javascript/jquery/jquery.js"></script>
+		
+	</head>
+		
+	<body>
+		
+		<div id="global">
+		
+		     <div id="entete">
+		         <table border="0" cellspacing="0" cellpadding="0" width="100%" height="100%">
+		         	<tr>
+			             <td align="left" valign="top"><a href="<b:config attribut="urlApplication"/>pageFixe?action=admin"><img src="<b:config attribut="urlApplication"/>images/application/bandeau_haut_gauche.jpg" border="0"/></a></td>
+			             <td align="left" valign="top"><img src="<b:config attribut="urlApplication"/>/images/application/bandeau_haut_centre.jpg"/></td>
+			             <td align="left" valign="top" background="<b:config attribut="urlApplication"/>images/application/bandeau_haut_droite_admin.jpg" width="222">&nbsp;
+			             
+				             <!-- Information client -->
+							<c:if test="${compte != null}">
+								<table border="0" cellspacing="0" cellpadding="0" width="100%" height="50px">
+									<tr height="50px">
+										<td style="padding-left:21px;padding-top:98px">
+											<div class="titregris">
+												Bienvenue
+					 							<c:out value="${compte.nom}"/>
+					 							<c:out value="${compte.prenom}"/>
+				 							</div>
+				 						</td>
+				 					</tr>
+				 					<tr>
+										<td align="center">
+											<div class="titregris">
+												<a href="<b:config attribut="urlApplication"/>gestionSession?action=deconnexion" title="Se déconnecter">(se d&eacute;connecter)</a>
+											</div>
+										</td>
+									</tr>			
+				 				</table>
+							</c:if>
+						</td>
+		         	</tr>
+		         </table>
+		     </div>
+		
+		     <div id="contenu">
+			     	<table border="0" cellspacing="0" cellpadding="0" width="100%">
+			    	<tr>
+		    	 
+		    	 	<!-- COLONNE GAUCHE -->
+		        	<td valign="top" width="200">
+						<%@ include file="adminnavigation.jspf" %> 
+			        </td>
+		
+			        <!-- COLONNE CENTRE -->
+			        <td valign="top" width="100%" style="padding-left:5px">
+			         
+			        <!-- Message d'erreur -->
+			        <div id="conteneur_erreur" <c:if test="${erreurs == null}">style="display:none;"</c:if> >
+				     	<div id="message_erreur">
+							<label>
+								Les erreurs suivantes se sont produites : 
+							</label>
+							<ul>
+								<div id="erreurs">
+									<c:forEach items="${erreurs}" var="erreur">
+										<li><c:out value="${erreur}"/></li>		
+									</c:forEach>
+								</div>
+							</ul>
+						</div>
+						<br/>
+					</div>
+					
+					<!-- Message de succes -->
+					<div id="conteneur_succes" <c:if test="${succes == null}">style="display:none;"</c:if> >
+				     	<div id="message_information">
+							<ul>
+								<c:forEach items="${succes}" var="info">
+									<li><c:out value="${info}"/></li>		
+								</c:forEach>
+							</ul>
+						</div>
+						<br>
+					</div>
+					
+					<br/>
+				
+		         

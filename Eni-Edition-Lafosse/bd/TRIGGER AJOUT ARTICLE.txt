@@ -1,0 +1,25 @@
+delimiter //
+CREATE TRIGGER articlecommande BEFORE INSERT ON lignecommande FOR EACH ROW 
+BEGIN
+
+    DECLARE id,stock int;
+    
+    INSERT INTO articlecommande(referencearticle,nomarticle,descriptionarticle,prixarticle,reductionarticle,datearticle,photoarticle,vignettearticle,etatarticle,id_categorie,poidsarticle,stockarticle)
+    SELECT id_article,nomarticle,descriptionarticle,prixarticle,reductionarticle,datearticle,photoarticle,vignettearticle,etatarticle,id_categorie,poidsarticle,stockarticle 
+    FROM article 
+    WHERE id_article = NEW.id_article;
+        
+    SET id = LAST_INSERT_ID();
+
+    SELECT stockarticle INTO stock FROM article WHERE id_article = NEW.id_article;
+
+    SET stock = stock - NEW.quantitearticle;
+
+    UPDATE article SET stockarticle = stock WHERE id_article = NEW.id_article;
+
+    SET NEW.id_article = id;
+
+END;//
+delimiter ;
+   
+    
